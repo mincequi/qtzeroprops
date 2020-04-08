@@ -171,8 +171,7 @@ void QZeroPropsWsService::doSend(const QVariant& uuid, const QByteArray& value)
     block += static_cast<char>(0x81);   // Map with one element
     block += MsgPack::pack(uuid);
     block += MsgPack::pack(value);
-    const auto bytes = socket->sendBinaryMessage(block);
-    qDebug() << "Sent" << bytes << "bytes";
+    socket->sendBinaryMessage(block);
 
     socket->flush();
 }

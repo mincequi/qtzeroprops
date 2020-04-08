@@ -17,6 +17,7 @@
 
 #include <QtZeroProps/QZeroPropsClient.h>
 #include <QtZeroProps/QZeroPropsService.h>
+#include <QtZeroProps/QZeroPropsTypes.h>
 
 #include "QZeroPropsBleClient.h"
 #include "QZeroPropsBleService.h"

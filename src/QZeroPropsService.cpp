@@ -20,6 +20,7 @@
 #include "QZeroPropsWsService.h"
 
 #include <QDebug>
+#include <QUuid>
 #include <QVariant>
 
 uint qHash(const QVariant& var)

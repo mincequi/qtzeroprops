@@ -19,6 +19,8 @@
 
 #include "QZeroPropsWsService.h"
 
+#include <QtZeroProps/QZeroPropsTypes.h>
+
 #include <QDebug>
 #include <QHostInfo>
 #include <QtWebSockets/QWebSocket>

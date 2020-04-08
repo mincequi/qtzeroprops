@@ -17,13 +17,12 @@
 
 #pragma once
 
-#include <QtZeroProps/QZeroPropsTypes.h>
-
 #include <QObject>
 
 namespace QtZeroProps
 {
 class QZeroPropsService;
+struct ServiceConfiguration;
 
 /// Discovers and connects to a remote QZeroPropsServer.
 class QZeroPropsClient : public QObject

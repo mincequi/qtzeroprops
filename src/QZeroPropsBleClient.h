@@ -20,6 +20,7 @@
 #include <QtZeroProps/QZeroPropsClient.h>
 
 #include <QBluetoothDeviceDiscoveryAgent>
+#include <QUuid>
 
 class QBluetoothDeviceInfo;
 class QLowEnergyController;
