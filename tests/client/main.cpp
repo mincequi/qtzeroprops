@@ -25,10 +25,10 @@ int main(int argc, char **argv)
     QObject::connect(&client, &QZeroPropsClient::servicesChanged, [&]() {
         if (!client.discoveredServices().empty() && !service) {
             service = static_cast<QZeroPropsService*>(client.discoveredServices().first());
-            timer.start(1000);
-            QObject::connect(service, &QZeroPropsService::propertyChanged, [](const QVariant& uuid, const QByteArray& value) {
-                qDebug() << "uuid:" << uuid << ", value.size:" << value.size();
-            });
+            //timer.start(1000);
+            //QObject::connect(service, &QZeroPropsService::propertyChanged, [](const QVariant& uuid, const QByteArray& value) {
+            //    qDebug() << "uuid:" << uuid << ", value.size:" << value.size();
+            //});
             client.connectToService(service);
         }
     });
