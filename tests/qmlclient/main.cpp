@@ -14,7 +14,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QZeroPropsClient client;
-    qmlRegisterSingletonInstance("QtZeroProps", 1, 0, "QZeroPropsClient", &client);
+    qmlRegisterSingletonType<QZeroPropsClient>("QtZeroProps", 1, 0, "QZeroPropsClient", [&](QQmlEngine*, QJSEngine*) -> QObject* {
+        return &client;
+    });
     qRegisterMetaType<QZeroPropsService*>("QZeroPropsService*");
 
     QQmlApplicationEngine engine;
