@@ -37,17 +37,14 @@ QZeroPropsWsService::QZeroPropsWsService(QZeroPropsService* _q)
 
 QZeroPropsWsService::~QZeroPropsWsService()
 {
-    disconnect();
+    disconnectFromService();
 }
 
-void QZeroPropsWsService::connect()
+void QZeroPropsWsService::connectToService()
 {
     emit stateChanged(QZeroPropsClient::State::Connecting, "Connecting " + q->name());
 
-    if (socket) {
-        socket->disconnect();
-        socket->deleteLater();
-    }
+    disconnectFromService();
 
     socket = new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this);
 
@@ -78,7 +75,7 @@ void QZeroPropsWsService::connect()
     socket->open(url);
 }
 
-void QZeroPropsWsService::disconnect()
+void QZeroPropsWsService::disconnectFromService()
 {
     if (socket) {
         socket->disconnect();
@@ -95,11 +92,13 @@ void QZeroPropsWsService::onClientConnected(QWebSocket* _socket)
         return;
     }
 
+    disconnectFromService();
+
     // Open socket
     socket = _socket;
 
     QObject::connect(socket, &QWebSocket::binaryMessageReceived, this, &QZeroPropsWsService::onReceive);
-    QObject::connect(socket, &QWebSocket::disconnected, this, &QZeroPropsWsService::disconnect);
+    QObject::connect(socket, &QWebSocket::disconnected, this, &QZeroPropsWsService::disconnectFromService);
 
     // Iterate dirty properties and send them
     qDebug("New connection. Send properties:");

@@ -35,8 +35,8 @@ public:
     QZeroPropsServicePrivate(QZeroPropsService* _q);
     virtual ~QZeroPropsServicePrivate();
 
-    virtual void connect() = 0;
-    virtual void disconnect() = 0;
+    virtual void connectToService() = 0;
+    virtual void disconnectFromService() = 0;
 
     void onTimeout();
     virtual void doSend(const QVariant& uuid, const QByteArray& value) = 0;

@@ -41,12 +41,12 @@ public:
         delete session;
     }
 
-    void connect() override {
+    void connectToService() override {
         emit stateChanged(QZeroPropsClient::State::Connecting, "Connecting " + q->name());
         session->connectToDevice(bluetoothDeviceInfo, serviceUuid);
     }
 
-    void disconnect() override {
+    void disconnectFromService() override {
         session->disconnectFromDevice();
     }
 

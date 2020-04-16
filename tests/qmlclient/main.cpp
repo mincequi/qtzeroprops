@@ -7,15 +7,17 @@
 
 using namespace QtZeroProps;
 
+static QZeroPropsClient* s_zpClient = nullptr;
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
-    QZeroPropsClient client;
-    qmlRegisterSingletonType<QZeroPropsClient>("QtZeroProps", 1, 0, "QZeroPropsClient", [&](QQmlEngine*, QJSEngine*) -> QObject* {
-        return &client;
+    s_zpClient = new QZeroPropsClient(&app);
+    qmlRegisterSingletonType<QZeroPropsClient>("QtZeroProps", 1, 0, "QZeroPropsClient", [](QQmlEngine*, QJSEngine*) -> QObject* {
+        return s_zpClient;
     });
     qRegisterMetaType<QZeroPropsService*>("QZeroPropsService*");
 
@@ -27,7 +29,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    client.startDiscovery({"_cornrow._tcp"});
+    s_zpClient->startDiscovery({"_cornrow._tcp"});
 
     return app.exec();
 }

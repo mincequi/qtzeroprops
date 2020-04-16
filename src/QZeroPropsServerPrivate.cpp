@@ -31,7 +31,7 @@ void QZeroPropsServerPrivate::stopService()
         return;
     }
 
-    m_currentService->d->disconnect();
+    m_currentService->d->disconnectFromService();
     m_currentService = nullptr;
 }
 

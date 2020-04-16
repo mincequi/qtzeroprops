@@ -159,13 +159,13 @@ void QZeroPropsClient::connectToService(QZeroPropsService* service)
 
     d->currentService = service;
     connect(d->currentService->d, &QZeroPropsServicePrivate::stateChanged, this, &QZeroPropsClient::stateChanged);
-    d->currentService->d->connect();
+    d->currentService->d->connectToService();
 }
 
 void QZeroPropsClient::disconnectFromService()
 {
     if (d->currentService) {
-        //d->currentService->d->disconnect();
+        d->currentService->d->disconnectFromService();
         d->currentService = nullptr;
     }
 }

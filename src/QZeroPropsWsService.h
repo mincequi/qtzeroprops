@@ -31,8 +31,8 @@ public:
     ~QZeroPropsWsService() override;
 
 private:
-    void connect() override;
-    void disconnect() override;
+    void connectToService() override;
+    void disconnectFromService() override;
     void doSend(const QVariant& uuid, const QByteArray& value) override;
 
     // Event handlers from socket/server

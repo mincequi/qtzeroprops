@@ -80,7 +80,7 @@ void BleClientSession::onDeviceDisconnected()
 {
     qDebug() << __func__;
 
-    q->disconnect();
+    q->disconnectFromService();
     emit q->stateChanged(QZeroPropsClient::State::Disconnected);
 }
 

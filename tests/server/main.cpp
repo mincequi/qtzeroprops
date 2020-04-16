@@ -20,8 +20,11 @@ int main(int argc, char **argv)
     QTimer timer;
     timer.setSingleShot(false);
     timer.callOnTimeout([&]() {
-        static quint32 i = 0;
+        static qint8 i = 0;
         service->setProperty(++i, "1234");
+        if (i == std::numeric_limits<qint8>::max()) {
+            i = 0;
+        }
         //qDebug() << "Set key:" << i;
     });
     timer.start(1000);
