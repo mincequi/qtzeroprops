@@ -172,7 +172,8 @@ void QZeroPropsClient::connectToService(QZeroPropsService* service)
 void QZeroPropsClient::disconnectFromService()
 {
     if (d->currentService) {
-        d->currentService->d->disconnectFromService();
+        // @TODO(mawe): commenting this make the app crash. To be investigated.
+        //d->currentService->d->disconnectFromService();
         d->currentService = nullptr;
     }
 }
