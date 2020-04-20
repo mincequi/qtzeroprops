@@ -3,6 +3,8 @@ QT     -= gui
 QT     += bluetooth websockets
 CONFIG += staticlib create_prl
 
+TARGET = qtzeroprops
+
 QMAKE_CXXFLAGS += -Werror
 
 DEFINES += QZEROCONF_STATIC MSGPACK_NO_PACKTYPES

@@ -18,7 +18,7 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
-LIBS += -L$$OUT_PWD/../../src/ -lsrc
+LIBS += -L$$OUT_PWD/../../src/ -lqtzeroprops
 INCLUDEPATH += $$PWD/../../include
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
