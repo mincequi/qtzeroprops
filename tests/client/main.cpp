@@ -32,7 +32,7 @@ int main(int argc, char **argv)
             client.connectToService(service);
         }
     });
-    client.startDiscovery( {"_cornrow._tcp"} );
+    client.startDiscovery("_cornrow._tcp");
 
     a.exec();
 }

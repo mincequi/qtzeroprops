@@ -11,6 +11,7 @@ Window {
 
     Column {
         width: parent.width
+        height: parent.height
 
         ListView {
             width: parent.width
@@ -22,6 +23,13 @@ Window {
                     QZeroPropsClient.connectToService(modelData)
                 }
             }
+        }
+
+        Button {
+            width: parent.width
+            anchors.bottom: parent.bottom
+            text: "Start Discovery"
+            onClicked: QZeroPropsClient.startDiscovery("_cornrow._tcp")
         }
     }
 }

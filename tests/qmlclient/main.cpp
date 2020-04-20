@@ -29,7 +29,5 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    s_zpClient->startDiscovery({"_cornrow._tcp"});
-
     return app.exec();
 }

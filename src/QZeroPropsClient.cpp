@@ -124,6 +124,8 @@ QObjectList QZeroPropsClient::discoveredServices() const
 
 void QZeroPropsClient::startDiscovery(const ServiceConfiguration& config)
 {
+    stopDiscovery();
+
     // Clear previous services
     d->services.clear();
     emit servicesChanged();
@@ -136,6 +138,11 @@ void QZeroPropsClient::startDiscovery(const ServiceConfiguration& config)
     if (!config.bleUuid.isNull()) {
         d->bleClient.startDiscovery(config.bleUuid);
     }
+}
+
+void QZeroPropsClient::startDiscovery(const QString& zeroConfType)
+{
+    startDiscovery(ServiceConfiguration({zeroConfType, QUuid()}));
 }
 
 void QZeroPropsClient::stopDiscovery()

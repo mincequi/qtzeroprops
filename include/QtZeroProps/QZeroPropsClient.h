@@ -82,6 +82,7 @@ public slots:
     /// services we are looking for. If the appropriate fields are empty or
     /// undefined, they are not discovered.
     void startDiscovery(const ServiceConfiguration& config);
+    void startDiscovery(const QString& zeroConfType);
 
     /// Stops QZeroProps service discovery.
     ///
