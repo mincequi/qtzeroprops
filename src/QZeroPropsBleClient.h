@@ -19,7 +19,7 @@
 
 #include <QtZeroProps/QZeroPropsClient.h>
 
-#include <QBluetoothDeviceDiscoveryAgent>
+#include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
 #include <QUuid>
 
 class QBluetoothDeviceInfo;

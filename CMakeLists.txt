@@ -2,16 +2,19 @@ cmake_minimum_required(VERSION 3.7)
 
 project(qtzeroprops)
 
-add_definitions(-DQZEROCONF_STATIC)
+add_definitions(-DQZEROCONF_STATIC -DMSGPACK_NO_PACKTYPES)
 
 find_package(Qt5Bluetooth)
 find_package(Qt5WebSockets)
 
 add_library(${PROJECT_NAME} STATIC
+    include/QtZeroProps/QZeroPropsClient.h
     include/QtZeroProps/QZeroPropsServer.h
     include/QtZeroProps/QZeroPropsService.h
 
-    #src/QZeroPropsClient.cpp
+    src/BleClientSession.cpp
+    src/QZeroPropsBleClient.cpp
+    src/QZeroPropsClient.cpp
     src/QZeroPropsServer.cpp
     src/QZeroPropsServerPrivate.cpp
     src/QZeroPropsService.cpp

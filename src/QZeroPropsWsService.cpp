@@ -98,7 +98,10 @@ void QZeroPropsWsService::onClientConnected(QWebSocket* _socket)
     socket = _socket;
 
     QObject::connect(socket, &QWebSocket::binaryMessageReceived, this, &QZeroPropsWsService::onReceive);
-    QObject::connect(socket, &QWebSocket::disconnected, this, &QZeroPropsWsService::disconnectFromService);
+    QObject::connect(socket, &QWebSocket::disconnected, [this]() {
+        disconnectFromService();
+        emit stateChanged(QZeroPropsClient::State::Disconnected);
+    });
 
     // Iterate dirty properties and send them
     qDebug("New connection. Send properties:");

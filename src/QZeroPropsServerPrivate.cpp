@@ -6,8 +6,8 @@
 namespace QtZeroProps
 {
 
-QZeroPropsServerPrivate::QZeroPropsServerPrivate(QObject *parent) :
-    QObject(parent)
+QZeroPropsServerPrivate::QZeroPropsServerPrivate(QZeroPropsServer* _q) :
+    q(_q)
 {
 }
 

@@ -19,6 +19,7 @@
 
 #include "QZeroPropsWsService.h"
 
+#include <QtZeroProps/QZeroPropsServer.h>
 #include <QtZeroProps/QZeroPropsTypes.h>
 
 #include <QDebug>
@@ -30,8 +31,8 @@
 namespace QtZeroProps
 {
 
-QZeroPropsWsServer::QZeroPropsWsServer(QObject *parent)
-    : QtZeroProps::QZeroPropsServerPrivate(parent),
+QZeroPropsWsServer::QZeroPropsWsServer(QZeroPropsServer* _q)
+    : QZeroPropsServerPrivate(_q),
       m_server("", QWebSocketServer::SslMode::NonSecureMode)
 {
 }
@@ -54,6 +55,11 @@ QZeroPropsServicePrivate* QZeroPropsWsServer::createService(const QtZeroProps::S
     m_service->type = QZeroPropsService::ServiceType::WebSocket;
     connect(&m_server, &QWebSocketServer::newConnection, [this]() {
         m_service->onClientConnected(m_server.nextPendingConnection());
+    });
+    connect(m_service, &QZeroPropsServicePrivate::stateChanged, [this](QZeroPropsClient::State state) {
+        if (state == QZeroPropsClient::State::Disconnected) {
+            emit q->clientDisconnected();
+        }
     });
 
     // Publish service

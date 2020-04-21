@@ -32,6 +32,7 @@ QZeroPropsServer::QZeroPropsServer(QObject* parent) :
 
 QZeroPropsServer::~QZeroPropsServer()
 {
+    delete d;
 }
 
 QZeroPropsService* QZeroPropsServer::startService(const ServiceConfiguration& configuration)

@@ -53,6 +53,10 @@ public:
     /// Stops current QZeroProps service.
     void stopService();
 
+signals:
+    /// This signal is emitted whenever a client disconnects.
+    void clientDisconnected();
+
 private:
     class QZeroPropsServerPrivate* const d;
 };

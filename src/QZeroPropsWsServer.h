@@ -22,6 +22,7 @@
 
 namespace QtZeroProps
 {
+class QZeroPropsServer;
 class QZeroPropsWsService;
 
 class QZeroPropsWsServer : public QtZeroProps::QZeroPropsServerPrivate
@@ -29,7 +30,7 @@ class QZeroPropsWsServer : public QtZeroProps::QZeroPropsServerPrivate
     Q_OBJECT
 
 public:
-    explicit QZeroPropsWsServer(QObject *parent = nullptr);
+    explicit QZeroPropsWsServer(QZeroPropsServer* _q);
     ~QZeroPropsWsServer() override;
 
 private:

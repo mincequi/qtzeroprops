@@ -21,6 +21,7 @@
 
 namespace QtZeroProps
 {
+class QZeroPropsServer;
 class QZeroPropsService;
 class QZeroPropsServicePrivate;
 struct ServiceConfiguration;
@@ -29,7 +30,7 @@ class QZeroPropsServerPrivate : public QObject
 {
     Q_OBJECT
 public:
-    explicit QZeroPropsServerPrivate(QObject *parent = nullptr);
+    explicit QZeroPropsServerPrivate(QZeroPropsServer* _q);
     ~QZeroPropsServerPrivate();
 
     // @TODO(mawe): rename
@@ -40,6 +41,8 @@ protected:
     virtual QZeroPropsServicePrivate* createService(const ServiceConfiguration& config) = 0;
 
     QZeroPropsService* m_currentService = nullptr;
+
+    class QZeroPropsServer* const q;
 };
 
 } // namespace QtZeroProps
