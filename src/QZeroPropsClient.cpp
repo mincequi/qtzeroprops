@@ -122,6 +122,11 @@ QObjectList QZeroPropsClient::discoveredServices() const
     return _devices;
 }
 
+QObject* QZeroPropsClient::connectedService() const
+{
+    return d->currentService;
+}
+
 void QZeroPropsClient::startDiscovery(const ServiceConfiguration& config)
 {
     stopDiscovery();
@@ -167,6 +172,8 @@ void QZeroPropsClient::connectToService(QZeroPropsService* service)
     d->currentService = service;
     connect(d->currentService->d, &QZeroPropsServicePrivate::stateChanged, this, &QZeroPropsClient::stateChanged);
     d->currentService->d->connectToService();
+
+    emit connectedServiceChanged();
 }
 
 void QZeroPropsClient::disconnectFromService()
@@ -175,6 +182,7 @@ void QZeroPropsClient::disconnectFromService()
         // @TODO(mawe): commenting this make the app crash. To be investigated.
         //d->currentService->d->disconnectFromService();
         d->currentService = nullptr;
+        emit connectedServiceChanged();
     }
 }
 

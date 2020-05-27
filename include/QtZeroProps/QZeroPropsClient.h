@@ -32,6 +32,9 @@ class QZeroPropsClient : public QObject
     /// Returns a list of all discovered services.
     Q_PROPERTY(QList<QObject*> discoveredServices READ discoveredServices NOTIFY servicesChanged)
 
+    /// Return currently connected service.
+    Q_PROPERTY(QObject* connectedService READ connectedService NOTIFY connectedServiceChanged)
+
 public:
     /// This enum describes the different states in which a client can be.
     enum class State : uint8_t {
@@ -70,6 +73,10 @@ public:
     /// QZeroPropsServices are invalid.
     QObjectList discoveredServices() const;
 
+    /// Returns currently connected service. See QZeroPropsService for
+    /// object details.
+    QObject* connectedService() const;
+
 public slots:
     /// Starts QZeroProps service discovery. If it was previously started, it
     /// will be stopped and started again. Any previously returned
@@ -106,6 +113,9 @@ signals:
     /// Discovering state. It is also emitted when a new discovery is started
     /// and all previously discovered services are cleared.
     void servicesChanged();
+
+    /// This signal is emitted whenever the connected service changed.
+    void connectedServiceChanged();
 
 private:
     class QZeroPropsClientPrivate* const d;
