@@ -1,6 +1,6 @@
 [submodule "thirdparty/QtZeroConf"]
 	path = thirdparty/QtZeroConf
-	url = https://github.com/mincequi/QtZeroConf.git
+	url = https://github.com/jbagg/QtZeroConf.git
 [submodule "thirdparty/qmsgpack"]
 	path = thirdparty/qmsgpack
 	url = https://github.com/mincequi/qmsgpack.git
