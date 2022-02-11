@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.7)
 project(qtzeroprops)
 
 add_definitions(-DQZEROCONF_STATIC -DMSGPACK_NO_PACKTYPES)
+add_subdirectory(thirdparty/QtZeroConf)
 
 find_package(Qt5Bluetooth)
 find_package(Qt5WebSockets)
@@ -24,13 +25,13 @@ add_library(${PROJECT_NAME} STATIC
     src/QZeroPropsWsService.h
     src/QZeroPropsWsService.cpp
 
-    thirdparty/QtZeroConf/qzeroconf.h
-    thirdparty/QtZeroConf/avahi-qt/qt-watch.h
-    thirdparty/QtZeroConf/avahi-qt/qt-watch_p.h
+    #thirdparty/QtZeroConf/qzeroconf.h
+    #thirdparty/QtZeroConf/avahi-qt/qt-watch.h
+    #thirdparty/QtZeroConf/avahi-qt/qt-watch_p.h
 
-    thirdparty/QtZeroConf/avahi-qt/qt-watch.cpp
-    thirdparty/QtZeroConf/avahiclient.cpp
-    thirdparty/QtZeroConf/avahi-qt/qt-watch.cpp
+    #thirdparty/QtZeroConf/avahi-qt/qt-watch.cpp
+    #thirdparty/QtZeroConf/avahiclient.cpp
+    #thirdparty/QtZeroConf/avahi-qt/qt-watch.cpp
 
     thirdparty/qmsgpack/src/msgpack.cpp
     thirdparty/qmsgpack/src/msgpackcommon.cpp
@@ -59,5 +60,7 @@ PRIVATE
 target_link_libraries(${PROJECT_NAME}
     avahi-common
     avahi-client
+    QtZeroConf
+    Qt5::Bluetooth
     Qt5::WebSockets
 )
