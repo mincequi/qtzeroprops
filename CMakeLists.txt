@@ -5,17 +5,17 @@ project(qtzeroprops)
 add_definitions(-DQZEROCONF_STATIC -DMSGPACK_NO_PACKTYPES)
 add_subdirectory(thirdparty/QtZeroConf)
 
-find_package(Qt5Bluetooth)
-find_package(Qt5WebSockets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Bluetooth WebSockets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Bluetooth WebSockets)
 
 add_library(${PROJECT_NAME} STATIC
     include/QtZeroProps/QZeroPropsClient.h
     include/QtZeroProps/QZeroPropsServer.h
     include/QtZeroProps/QZeroPropsService.h
 
-    src/BleClientSession.cpp
-    src/QZeroPropsBleClient.cpp
-    src/QZeroPropsClient.cpp
+    #src/BleClientSession.cpp
+    #src/QZeroPropsBleClient.cpp
+    #src/QZeroPropsClient.cpp
     src/QZeroPropsServer.cpp
     src/QZeroPropsServerPrivate.cpp
     src/QZeroPropsService.cpp
@@ -61,6 +61,6 @@ target_link_libraries(${PROJECT_NAME}
     avahi-common
     avahi-client
     QtZeroConf
-    Qt5::Bluetooth
-    Qt5::WebSockets
+    Qt${QT_VERSION_MAJOR}::Bluetooth
+    Qt${QT_VERSION_MAJOR}::WebSockets
 )

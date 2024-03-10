@@ -127,10 +127,7 @@ void BleClientSession::onServiceStateChanged(QLowEnergyService::ServiceState s)
         qDebug() << __func__;
         emit q->stateChanged(QZeroPropsClient::State::Disconnected);
         break;
-    case QLowEnergyService::DiscoveryRequired:
-        // Rename DiscoveringServices -> DiscoveringDetails or DiscoveringService
-    case QLowEnergyService::DiscoveringServices: // discoverDetails() called and running
-    case QLowEnergyService::LocalService:   // Only in peripheral role
+    default:
         break;
     }
 }
